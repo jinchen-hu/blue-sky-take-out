@@ -92,4 +92,20 @@ public class EmployeeController {
         employeeService.toggleAccountStatus(status, id);
         return Result.success();
     }
+
+    @GetMapping("/{id}")
+    @Operation(description = "get employee info by id")
+    public Result<Employee> getEmployeeById(@PathVariable(value = "id") Long id) {
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    @PutMapping
+    @Operation(description = "update employee info")
+    public Result<String> updateEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("Update employee : {}", employeeDTO);
+        employeeService.update(employeeDTO);
+
+        return Result.success();
+    }
 }
