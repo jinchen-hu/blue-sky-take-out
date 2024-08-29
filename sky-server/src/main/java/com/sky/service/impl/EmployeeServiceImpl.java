@@ -1,6 +1,5 @@
 package com.sky.service.impl;
 
-import com.alibaba.druid.support.spring.stat.annotation.Stat;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
@@ -100,6 +99,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
 
         return new PageResult<>(total, records);
+    }
+
+    /**
+     * @param status
+     * @param id
+     */
+    @Override
+    public void toggleAccountStatus(Integer status, Long id) {
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
     }
 
 }

@@ -84,4 +84,12 @@ public class EmployeeController {
 
         return Result.success(pageResult);
     }
+
+    @PostMapping("/status/{status}")
+    @Operation(description = "toggle employee account status")
+    public Result<String> toggleAccountStatus(@PathVariable(value = "status") Integer status, Long id) {
+        log.info("Toggle employee '{}' to status : {}", id, status);
+        employeeService.toggleAccountStatus(status, id);
+        return Result.success();
+    }
 }
