@@ -2,83 +2,83 @@
 
 ## List of Tables
 
-|  |   Table name      | Comments       |
-| ---- | ------------- | -------------- |
-| 1    | employee      |     employee info     |
-| 2    | category      |      dish category    |
-| 3    | dish          | dish info         |
-| 4    | dish_flavor   | dish flavors     |
-| 5    | setmeal       | meal combo         |
-| 6    | setmeal_dish  | relationship between dish and combo |
-| 7    | user          | user info         |
-| 8    | address_book  | user address book         |
-| 9    | shopping_cart | cart info       |
-| 10   | orders        | order info         |
-| 11   | order_detail  | order details     |
+|    | Table name    | Comments                            |
+|----|---------------|-------------------------------------|
+| 1  | employee      | employee info                       |
+| 2  | category      | dish category                       |
+| 3  | dish          | dish info                           |
+| 4  | dish_flavor   | dish flavors                        |
+| 5  | setmeal       | meal combo                          |
+| 6  | setmeal_dish  | relationship between dish and combo |
+| 7  | user          | user info                           |
+| 8  | address_book  | user address book                   |
+| 9  | shopping_cart | cart info                           |
+| 10 | orders        | order info                          |
+| 11 | order_detail  | order details                       |
 
 ### 1. employee
 
 `emloyee` stores the employee information
 
-| Colum      | Data Type    | Description         | Comments        |
-| ----------- | ----------- | ------------ | ----------- |
-| id          | bigint      | Primary key         | increment        |
-| name        | varchar(32) | employee name         |             |
-| username    | varchar(32) | employee username       | Unique        |
-| password    | varchar(64) | password         |             |
-| phone       | varchar(11) | phone number       |             |
-| sex         | varchar(2)  | gender         |             |
-| id_number   | varchar(18) | ID    |             |
-| status      | int         | account staus     | 1-active 0-freezing |
-| create_time | datetime    | create time     |             |
-| update_time | datetime    | update time |             |
-| create_user | bigint      | create user id     |             |
-| update_user | bigint      | update user id |             |
+| Colum       | Data Type   | Description       | Comments             |
+|-------------|-------------|-------------------|----------------------|
+| id          | bigint      | Primary key       | increment            |
+| name        | varchar(32) | employee name     |                      |
+| username    | varchar(32) | employee username | Unique               |
+| password    | varchar(64) | password          |                      |
+| phone       | varchar(11) | phone number      |                      |
+| sex         | varchar(2)  | gender            |                      |
+| id_number   | varchar(18) | ID                |                      |
+| status      | int         | account status    | 1-active 0-suspended |
+| create_time | datetime    | create time       |                      |
+| update_time | datetime    | update time       |                      |
+| create_user | bigint      | create user id    |                      |
+| update_user | bigint      | update user id    |                      |
 
 ### 2. category
 
-category表为分类表，用于存储商品的分类信息。具体表结构如下：
+`category` stores the categories for meals and combos：
 
-| 字段名      | 数据类型    | 说明         | 备注                 |
-| ----------- | ----------- | ------------ | -------------------- |
-| id          | bigint      | 主键         | 自增                 |
-| name        | varchar(32) | 分类名称     | 唯一                 |
-| type        | int         | 分类类型     | 1菜品分类  2套餐分类 |
-| sort        | int         | 排序字段     | 用于分类数据的排序   |
-| status      | int         | 状态         | 1启用 0禁用          |
-| create_time | datetime    | 创建时间     |                      |
-| update_time | datetime    | 最后修改时间 |                      |
-| create_user | bigint      | 创建人id     |                      |
-| update_user | bigint      | 最后修改人id |                      |
+| Column      | Data Type   | Description      | Comments          |
+|-------------|-------------|------------------|-------------------|
+| id          | bigint      | Primary key      | increment         |
+| name        | varchar(32) | category name    | unique            |
+| type        | int         | type             | 1-meal  2-combo   |
+| sort        | int         | sort             | sorting           |
+| status      | int         | status           | 1-active 0-banned |
+| create_time | datetime    | create time      |                   |
+| update_time | datetime    | last update time |                   |
+| create_user | bigint      | creator id       |                   |
+| update_user | bigint      | last updater id  |                   |
 
 ### 3. dish
 
-dish表为菜品表，用于存储菜品的信息。具体表结构如下：
+`dish` stores meal information：
 
-| 字段名      | 数据类型      | 说明         | 备注        |
-| ----------- | ------------- | ------------ | ----------- |
-| id          | bigint        | 主键         | 自增        |
-| name        | varchar(32)   | 菜品名称     | 唯一        |
-| category_id | bigint        | 分类id       | 逻辑外键    |
-| price       | decimal(10,2) | 菜品价格     |             |
-| image       | varchar(255)  | 图片路径     |             |
-| description | varchar(255)  | 菜品描述     |             |
-| status      | int           | 售卖状态     | 1起售 0停售 |
-| create_time | datetime      | 创建时间     |             |
-| update_time | datetime      | 最后修改时间 |             |
-| create_user | bigint        | 创建人id     |             |
-| update_user | bigint        | 最后修改人id |             |
+| Column      | Data Type     | Description      | Comments                 |
+|-------------|---------------|------------------|--------------------------|
+| id          | bigint        | Primary key      | increment                |
+| name        | varchar(32)   | meal name        | Unique                   |
+| category_id | bigint        | category id      | foreign key              |
+| price       | decimal(10,2) | price            |                          |
+| image       | varchar(255)  | pic path         |                          |
+| description | varchar(255)  | description      |                          |
+| status      | int           | status           | 1-on-sale 0-out-of-stack |
+| create_time | datetime      | create time      |                          |
+| update_time | datetime      | last update time |                          |
+| create_user | bigint        | creator id       |                          |
+| update_user | bigint        | last updater id  |                          |
 
 ### 4. dish_flavor
 
-dish_flavor表为菜品口味表，用于存储菜品的口味信息。具体表结构如下：
+`dish_flavor` stores the flavor of dishes：
 
-| 字段名  | 数据类型     | 说明     | 备注     |
-| ------- | ------------ | -------- | -------- |
-| id      | bigint       | 主键     | 自增     |
-| dish_id | bigint       | 菜品id   | 逻辑外键 |
-| name    | varchar(32)  | 口味名称 |          |
-| value   | varchar(255) | 口味值   |          |
+| Column  | Data Type    | Description | Comments    |
+|---------|--------------|-------------|-------------|
+| id      | bigint       | Primary key | increment   |
+| dish_id | bigint       | dish id     | foreign key |
+| name    | varchar(32)  | name        |             |
+| value   | varchar(255) | value       |             |
 
 ### 5. setmeal
 

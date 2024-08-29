@@ -18,3 +18,13 @@ Content-Type: application/json
   "sex": "1",
   "username": "小智"
 }
+
+###
+GET {{server-port}}/admin/employee/page
+Content-Type: application/json
+
+{
+  "name": "",
+  "page": 2,
+  "pageSize": 1
+}
