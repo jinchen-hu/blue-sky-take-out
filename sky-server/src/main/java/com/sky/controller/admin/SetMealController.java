@@ -65,4 +65,11 @@ public class SetMealController {
         setMealService.update(setmealDTO);
         return Result.success();
     }
+
+    @PostMapping("/status/{status}")
+    @Operation(description = "toggle combo status")
+    public Result<?> startOrStop(@PathVariable Integer status, Long id) {
+        setMealService.startOrStop(status, id);
+        return Result.success();
+    }
 }

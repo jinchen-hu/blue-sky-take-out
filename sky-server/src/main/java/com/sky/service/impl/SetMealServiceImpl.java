@@ -6,6 +6,7 @@ import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.entity.Setmeal;
 import com.sky.entity.SetmealDish;
 import com.sky.exception.DeletionNotAllowedException;
@@ -122,6 +123,29 @@ public class SetMealServiceImpl implements SetMealService {
         Setmeal setmeal = new Setmeal();
         BeanUtils.copyProperties(setmealDTO, setmeal);
 
+        setmealMapper.update(setmeal);
+    }
+
+    /**
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        if(Objects.equals(status, StatusConstant.ENABLE)) {
+            List<Dish> dishes = dishMapper.getBySetmealId(id);
+            if (dishes != null && !dishes.isEmpty()) {
+                dishes.forEach(dish -> {
+                    if (Objects.equals(dish.getStatus(), StatusConstant.DISABLE)) {
+                        throw new DeletionNotAllowedException(MessageConstant.SETMEAL_ENABLE_FAILED);
+                    }
+                });
+            }
+        }
+        Setmeal setmeal = Setmeal.builder()
+                .id(id)
+                .status(status)
+                .build();
         setmealMapper.update(setmeal);
     }
 }
