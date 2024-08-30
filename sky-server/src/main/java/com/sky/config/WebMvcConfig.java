@@ -29,7 +29,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     public void addInterceptors(InterceptorRegistry registry) {
         log.info("Start registering interceptors...");
-        System.out.println("Start registering interceptors...");
         registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin/employee/login");

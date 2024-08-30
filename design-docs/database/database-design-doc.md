@@ -82,58 +82,58 @@
 
 ### 5. setmeal
 
-setmeal表为套餐表，用于存储套餐的信息。具体表结构如下：
+`setmeal` stores combo information：
 
-| 字段名      | 数据类型      | 说明         | 备注        |
-| ----------- | ------------- | ------------ | ----------- |
-| id          | bigint        | 主键         | 自增        |
-| name        | varchar(32)   | 套餐名称     | 唯一        |
-| category_id | bigint        | 分类id       | 逻辑外键    |
-| price       | decimal(10,2) | 套餐价格     |             |
-| image       | varchar(255)  | 图片路径     |             |
-| description | varchar(255)  | 套餐描述     |             |
-| status      | int           | 售卖状态     | 1起售 0停售 |
-| create_time | datetime      | 创建时间     |             |
-| update_time | datetime      | 最后修改时间 |             |
-| create_user | bigint        | 创建人id     |             |
-| update_user | bigint        | 最后修改人id |             |
+| Column      | Data Type     | Description      | Comments                 |
+|-------------|---------------|------------------|--------------------------|
+| id          | bigint        | primary key      | increment                |
+| name        | varchar(32)   | combo name       | unique                   |
+| category_id | bigint        | category id      | foreign key              |
+| price       | decimal(10,2) | price            |                          |
+| image       | varchar(255)  | pic path         |                          |
+| description | varchar(255)  | description      |                          |
+| status      | int           | status           | 1-on-sale 0-out-of-stock |
+| create_time | datetime      | create time      |                          |
+| update_time | datetime      | last update time |                          |
+| create_user | bigint        | creator id       |                          |
+| update_user | bigint        | last updater id  |                          |
 
 ### 6. setmeal_dish
 
-setmeal_dish表为套餐菜品关系表，用于存储套餐和菜品的关联关系。具体表结构如下：
+`setmeal_dish` stores relationship between meals and combos
 
-| 字段名     | 数据类型      | 说明     | 备注     |
-| ---------- | ------------- | -------- | -------- |
-| id         | bigint        | 主键     | 自增     |
-| setmeal_id | bigint        | 套餐id   | 逻辑外键 |
-| dish_id    | bigint        | 菜品id   | 逻辑外键 |
-| name       | varchar(32)   | 菜品名称 | 冗余字段 |
-| price      | decimal(10,2) | 菜品单价 | 冗余字段 |
-| copies     | int           | 菜品份数 |          |
+| Column     | Data Type     | Description | Comment     |
+|------------|---------------|-------------|-------------|
+| id         | bigint        | primary key | increment   |
+| setmeal_id | bigint        | combo id    | foreign key |
+| dish_id    | bigint        | dish id     | foreign key |
+| name       | varchar(32)   | dish name   |             |
+| price      | decimal(10,2) | dish price  |             |
+| copies     | int           | dish stock  |             |
 
 ### 7. user
 
 user表为用户表，用于存储C端用户的信息。具体表结构如下：
 
-| 字段名      | 数据类型     | 说明               | 备注 |
-| ----------- | ------------ | ------------------ | ---- |
-| id          | bigint       | 主键               | 自增 |
-| openid      | varchar(45)  | 微信用户的唯一标识 |      |
-| name        | varchar(32)  | 用户姓名           |      |
-| phone       | varchar(11)  | 手机号             |      |
-| sex         | varchar(2)   | 性别               |      |
-| id_number   | varchar(18)  | 身份证号           |      |
-| avatar      | varchar(500) | 微信用户头像路径   |      |
-| create_time | datetime     | 注册时间           |      |
+| Column      | Data Tyte     | Description | Comments |
+| ----------- | ------------ |-------------| ---- |
+| id          | bigint       | Primary key | increment |
+| openid      | varchar(45)  | 微信用户的唯一标识   |      |
+| name        | varchar(32)  | 用户姓名        |      |
+| phone       | varchar(11)  | 手机号         |      |
+| sex         | varchar(2)   | 性别          |      |
+| id_number   | varchar(18)  | 身份证号        |      |
+| avatar      | varchar(500) | 微信用户头像路径    |      |
+| create_time | datetime     | 注册时间        |      |
 
 ### 8. address_book
 
 address_book表为地址表，用于存储C端用户的收货地址信息。具体表结构如下：
 
-| 字段名        | 数据类型     | 说明         | 备注           |
+| Column        | Data Tyte     | Description         | Comments           |
 | ------------- | ------------ | ------------ | -------------- |
-| id            | bigint       | 主键         | 自增           |
-| user_id       | bigint       | 用户id       | 逻辑外键       |
+| id            | bigint       | Primary key         | increment           |
+| user_id       | bigint       | 用户id       | foreign key       |
 | consignee     | varchar(50)  | 收货人       |                |
 | sex           | varchar(2)   | 性别         |                |
 | phone         | varchar(11)  | 手机号       |                |
@@ -151,14 +151,14 @@ address_book表为地址表，用于存储C端用户的收货地址信息。具�
 
 shopping_cart表为购物车表，用于存储C端用户的购物车信息。具体表结构如下：
 
-| 字段名      | 数据类型      | 说明         | 备注     |
+| Column      | Data Tyte      | Description         | Comments     |
 | ----------- | ------------- | ------------ | -------- |
-| id          | bigint        | 主键         | 自增     |
+| id          | bigint        | Primary key         | increment     |
 | name        | varchar(32)   | 商品名称     |          |
 | image       | varchar(255)  | 商品图片路径 |          |
-| user_id     | bigint        | 用户id       | 逻辑外键 |
-| dish_id     | bigint        | 菜品id       | 逻辑外键 |
-| setmeal_id  | bigint        | 套餐id       | 逻辑外键 |
+| user_id     | bigint        | 用户id       | foreign key |
+| dish_id     | bigint        | 菜品id       | foreign key |
+| setmeal_id  | bigint        | 套餐id       | foreign key |
 | dish_flavor | varchar(50)   | 菜品口味     |          |
 | number      | int           | 商品数量     |          |
 | amount      | decimal(10,2) | 商品单价     |          |
@@ -168,13 +168,13 @@ shopping_cart表为购物车表，用于存储C端用户的购物车信息。具
 
 orders表为订单表，用于存储C端用户的订单数据。具体表结构如下：
 
-| 字段名                  | 数据类型      | 说明         | 备注                                            |
+| Column                  | Data Tyte      | Description         | Comments|
 | ----------------------- | ------------- | ------------ | ----------------------------------------------- |
-| id                      | bigint        | 主键         | 自增                                            |
+| id                      | bigint        | Primary key         | increment                                            |
 | number                  | varchar(50)   | 订单号       |                                                 |
 | status                  | int           | 订单状态     | 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消 |
-| user_id                 | bigint        | 用户id       | 逻辑外键                                        |
-| address_book_id         | bigint        | 地址id       | 逻辑外键                                        |
+| user_id                 | bigint        | 用户id       | foreign key                                        |
+| address_book_id         | bigint        | 地址id       | foreign key                                        |
 | order_time              | datetime      | 下单时间     |                                                 |
 | checkout_time           | datetime      | 付款时间     |                                                 |
 | pay_method              | int           | 支付方式     | 1微信支付 2支付宝支付                           |
@@ -199,15 +199,15 @@ orders表为订单表，用于存储C端用户的订单数据。具体表结构�
 
 order_detail表为订单明细表，用于存储C端用户的订单明细数据。具体表结构如下：
 
-| 字段名      | 数据类型      | 说明         | 备注     |
-| ----------- | ------------- | ------------ | -------- |
-| id          | bigint        | 主键         | 自增     |
-| name        | varchar(32)   | 商品名称     |          |
-| image       | varchar(255)  | 商品图片路径 |          |
-| order_id    | bigint        | 订单id       | 逻辑外键 |
-| dish_id     | bigint        | 菜品id       | 逻辑外键 |
-| setmeal_id  | bigint        | 套餐id       | 逻辑外键 |
-| dish_flavor | varchar(50)   | 菜品口味     |          |
-| number      | int           | 商品数量     |          |
-| amount      | decimal(10,2) | 商品单价     |          |
+| Column      | Data Tyte     | Description         | Comments    |
+| ----------- |---------------| ------------ |-------------|
+| id          | bigint        | Primary key         | increment   |
+| name        | varchar(32)   | 商品名称     |             |
+| image       | varchar(255)  | 商品图片路径 |             |
+| order_id    | bigint        | 订单id       | foreign key |
+| dish_id     | bigint        | 菜品id       | foreign key |
+| setmeal_id  | bigint        | 套餐id       | foreign key |
+| dish_flavor | varchar(50)   | 菜品口味     |             |
+| number      | int           | 商品数量     |             |
+| amount      | decimal(10,2) | 商品单价     |             |
 
