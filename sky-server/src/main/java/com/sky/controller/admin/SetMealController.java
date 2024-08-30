@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin/setmeal")
 @Tag(name = "combo interfaces")
@@ -35,5 +37,32 @@ public class SetMealController {
         PageResult<SetmealVO> pageResult= setMealService.pageQuery(setmealPageQueryDTO);
 
         return Result.success(pageResult);
+    }
+
+    @DeleteMapping
+    @Operation
+    public Result<?> delete(@RequestParam List<Long> ids) {
+        setMealService.deleteBatch(ids);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(description = "get combo by id")
+    public Result<SetmealVO> getById(@PathVariable Long id) {
+        SetmealVO setmealVO = setMealService.getByIdWithDish(id);
+        return Result.success(setmealVO);
+    }
+
+    /**
+     * 修改套餐
+     *
+     * @param setmealDTO
+     * @return
+     */
+    @PutMapping
+    @Operation(description = "update combo")
+    public Result<?> update(@RequestBody SetmealDTO setmealDTO) {
+        setMealService.update(setmealDTO);
+        return Result.success();
     }
 }
