@@ -1,3 +1,5 @@
 TODO:
 1. complete swagger
 2. utilize Mybatis-plus
+3. persist data into cloud provider
+4. use spring gateway

@@ -39,7 +39,6 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
-        System.out.println("pre handle the interceptor");
         //1、Get token
         assert request != null;
         String token = request.getHeader(jwtProperties.getAdminTokenName());
