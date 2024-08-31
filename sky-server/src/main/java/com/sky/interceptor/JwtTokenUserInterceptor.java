@@ -41,7 +41,7 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
         }
         //1、Get token
         assert request != null;
-        String token = request.getHeader(jwtProperties.getAdminTokenName());
+        String token = request.getHeader(jwtProperties.getUserTokenName());
 
         //2、examine jwt
         try {

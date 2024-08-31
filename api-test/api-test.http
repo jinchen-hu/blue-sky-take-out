@@ -32,3 +32,7 @@ Content-Type: application/json
 ###
 GET {{server-port}}/user/shop/status
 Content-Type: application/json
+
+###
+GET {{server-port}}/user/category/list
+Content-Type: application/json

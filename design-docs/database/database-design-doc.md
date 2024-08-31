@@ -113,39 +113,39 @@
 
 ### 7. user
 
-user表为用户表，用于存储C端用户的信息。具体表结构如下：
+`user` stores client user information
 
-| Column      | Data Tyte     | Description | Comments |
-| ----------- | ------------ |-------------| ---- |
-| id          | bigint       | Primary key | increment |
-| openid      | varchar(45)  | 微信用户的唯一标识   |      |
-| name        | varchar(32)  | 用户姓名        |      |
-| phone       | varchar(11)  | 手机号         |      |
-| sex         | varchar(2)   | 性别          |      |
-| id_number   | varchar(18)  | 身份证号        |      |
-| avatar      | varchar(500) | 微信用户头像路径    |      |
-| create_time | datetime     | 注册时间        |      |
+| Column      | Data Tyte    | Description              | Comments  |
+|-------------|--------------|--------------------------|-----------|
+| id          | bigint       | Primary key              | increment |
+| openid      | varchar(45)  | wechat unique identifier |           |
+| name        | varchar(32)  | name                     |           |
+| phone       | varchar(11)  | phone number             |           |
+| sex         | varchar(2)   | gender                   |           |
+| id_number   | varchar(18)  | id number                |           |
+| avatar      | varchar(500) | profile pic path         |           |
+| create_time | datetime     | signup time              |           |
 
 ### 8. address_book
 
-address_book表为地址表，用于存储C端用户的收货地址信息。具体表结构如下：
+`address_book` stores address book for client users
 
-| Column        | Data Tyte     | Description         | Comments           |
-| ------------- | ------------ | ------------ | -------------- |
-| id            | bigint       | Primary key         | increment           |
-| user_id       | bigint       | 用户id       | foreign key       |
-| consignee     | varchar(50)  | 收货人       |                |
-| sex           | varchar(2)   | 性别         |                |
-| phone         | varchar(11)  | 手机号       |                |
-| province_code | varchar(12)  | 省份编码     |                |
-| province_name | varchar(32)  | 省份名称     |                |
-| city_code     | varchar(12)  | 城市编码     |                |
-| city_name     | varchar(32)  | 城市名称     |                |
-| district_code | varchar(12)  | 区县编码     |                |
-| district_name | varchar(32)  | 区县名称     |                |
-| detail        | varchar(200) | 详细地址信息 | 具体到门牌号   |
-| label         | varchar(100) | 标签         | 公司、家、学校 |
-| is_default    | tinyint(1)   | 是否默认地址 | 1是 0否        |
+| Column        | Data Tyte    | Description         | Comments     |
+|---------------|--------------|---------------------|--------------|
+| id            | bigint       | Primary key         | increment    |
+| user_id       | bigint       | user id             | foreign key  |
+| consignee     | varchar(50)  | consignee           |              |
+| sex           | varchar(2)   | gender              |              |
+| phone         | varchar(11)  | phone number        |              |
+| province_code | varchar(12)  | province code       |              |
+| province_name | varchar(32)  | province name       |              |
+| city_code     | varchar(12)  | zip code            |              |
+| city_name     | varchar(32)  | city name           |              |
+| district_code | varchar(12)  | direct code         |              |
+| district_name | varchar(32)  | direct name         |              |
+| detail        | varchar(200) | detailed address    |              |
+| label         | varchar(100) | label               | office, home |
+| is_default    | tinyint(1)   | if default addresss | 1-yes 0-no   |
 
 ### 9. shopping_cart
 
