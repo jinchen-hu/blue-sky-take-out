@@ -149,65 +149,65 @@
 
 ### 9. shopping_cart
 
-shopping_cart表为购物车表，用于存储C端用户的购物车信息。具体表结构如下：
+`shopping_cart` stores client shopping cart information
 
-| Column      | Data Tyte      | Description         | Comments     |
-| ----------- | ------------- | ------------ | -------- |
-| id          | bigint        | Primary key         | increment     |
-| name        | varchar(32)   | 商品名称     |          |
-| image       | varchar(255)  | 商品图片路径 |          |
-| user_id     | bigint        | 用户id       | foreign key |
-| dish_id     | bigint        | 菜品id       | foreign key |
-| setmeal_id  | bigint        | 套餐id       | foreign key |
-| dish_flavor | varchar(50)   | 菜品口味     |          |
-| number      | int           | 商品数量     |          |
-| amount      | decimal(10,2) | 商品单价     |          |
-| create_time | datetime      | 创建时间     |          |
+| Column      | Data Tyte     | Description   | Comments    |
+|-------------|---------------|---------------|-------------|
+| id          | bigint        | Primary key   | increment   |
+| name        | varchar(32)   | dish name     |             |
+| image       | varchar(255)  | dish pic path |             |
+| user_id     | bigint        | user id       | foreign key |
+| dish_id     | bigint        | dish id       | foreign key |
+| setmeal_id  | bigint        | combo id      | foreign key |
+| dish_flavor | varchar(50)   | flavor        |             |
+| number      | int           | quantity      |             |
+| amount      | decimal(10,2) | total price   |             |
+| create_time | datetime      | create time   |             |
 
 ### 10. orders
 
-orders表为订单表，用于存储C端用户的订单数据。具体表结构如下：
+`orders` stores order information
 
-| Column                  | Data Tyte      | Description         | Comments|
-| ----------------------- | ------------- | ------------ | ----------------------------------------------- |
-| id                      | bigint        | Primary key         | increment                                            |
-| number                  | varchar(50)   | 订单号       |                                                 |
-| status                  | int           | 订单状态     | 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消 |
-| user_id                 | bigint        | 用户id       | foreign key                                        |
-| address_book_id         | bigint        | 地址id       | foreign key                                        |
-| order_time              | datetime      | 下单时间     |                                                 |
-| checkout_time           | datetime      | 付款时间     |                                                 |
-| pay_method              | int           | 支付方式     | 1微信支付 2支付宝支付                           |
-| pay_status              | tinyint       | 支付状态     | 0未支付 1已支付 2退款                           |
-| amount                  | decimal(10,2) | 订单金额     |                                                 |
-| remark                  | varchar(100)  | 备注信息     |                                                 |
-| phone                   | varchar(11)   | 手机号       |                                                 |
-| address                 | varchar(255)  | 详细地址信息 |                                                 |
-| user_name               | varchar(32)   | 用户姓名     |                                                 |
-| consignee               | varchar(32)   | 收货人       |                                                 |
-| cancel_reason           | varchar(255)  | 订单取消原因 |                                                 |
-| rejection_reason        | varchar(255)  | 拒单原因     |                                                 |
-| cancel_time             | datetime      | 订单取消时间 |                                                 |
-| estimated_delivery_time | datetime      | 预计送达时间 |                                                 |
-| delivery_status         | tinyint       | 配送状态     | 1立即送出  0选择具体时间                        |
-| delivery_time           | datetime      | 送达时间     |                                                 |
-| pack_amount             | int           | 打包费       |                                                 |
-| tableware_number        | int           | 餐具数量     |                                                 |
-| tableware_status        | tinyint       | 餐具数量状态 | 1按餐量提供  0选择具体数量                      |
+| Column                  | Data Tyte     | Description               | Comments                                                                               |
+|-------------------------|---------------|---------------------------|----------------------------------------------------------------------------------------|
+| id                      | bigint        | Primary key               | increment                                                                              |
+| number                  | varchar(50)   | order number              |                                                                                        |
+| status                  | int           | order status              | 1-pending pay 2-pending accepted 3-accepted <br/>4-deliverying 5-completed 6-cancelled |
+| user_id                 | bigint        | user id                   | foreign key                                                                            |
+| address_book_id         | bigint        | address id                | foreign key                                                                            |
+| order_time              | datetime      | order time                |                                                                                        |
+| checkout_time           | datetime      | payment time              |                                                                                        |
+| pay_method              | int           | pay method                | 1-wechat pay 2-alipay                                                                  |
+| pay_status              | tinyint       | pay status                | 0-pending pay 1-paid 2-refund                                                          |
+| amount                  | decimal(10,2) | order amount              |                                                                                        |
+| remark                  | varchar(100)  | comments                  |                                                                                        |
+| phone                   | varchar(11)   | phone number              |                                                                                        |
+| address                 | varchar(255)  | detailed address          |                                                                                        |
+| user_name               | varchar(32)   | user name                 |                                                                                        |
+| consignee               | varchar(32)   | consignee                 |                                                                                        |
+| cancel_reason           | varchar(255)  | cancellation reason       |                                                                                        |
+| rejection_reason        | varchar(255)  | rejection reason          |                                                                                        |
+| cancel_time             | datetime      | cancel time               |                                                                                        |
+| estimated_delivery_time | datetime      | anticipated delivery time |                                                                                        |
+| delivery_status         | tinyint       | delivery status           | 1-instant  0-chosen time                                                               |
+| delivery_time           | datetime      | delivered time            |                                                                                        |
+| pack_amount             | int           | packaging amount          |                                                                                        |
+| tableware_number        | int           | tableware amount          |                                                                                        |
+| tableware_status        | tinyint       | tableware status          | 1-based on dish amount  0-chosen by user                                               |
 
 ### 11. order_detail
 
-order_detail表为订单明细表，用于存储C端用户的订单明细数据。具体表结构如下：
+`order_detail` stores detailed order information
 
-| Column      | Data Tyte     | Description         | Comments    |
-| ----------- |---------------| ------------ |-------------|
-| id          | bigint        | Primary key         | increment   |
-| name        | varchar(32)   | 商品名称     |             |
-| image       | varchar(255)  | 商品图片路径 |             |
-| order_id    | bigint        | 订单id       | foreign key |
-| dish_id     | bigint        | 菜品id       | foreign key |
-| setmeal_id  | bigint        | 套餐id       | foreign key |
-| dish_flavor | varchar(50)   | 菜品口味     |             |
-| number      | int           | 商品数量     |             |
-| amount      | decimal(10,2) | 商品单价     |             |
+| Column      | Data Tyte     | Description   | Comments    |
+|-------------|---------------|---------------|-------------|
+| id          | bigint        | Primary key   | increment   |
+| name        | varchar(32)   | meal name     |             |
+| image       | varchar(255)  | meal pic path |             |
+| order_id    | bigint        | order id      | foreign key |
+| dish_id     | bigint        | dish id       | foreign key |
+| setmeal_id  | bigint        | set id        | foreign key |
+| dish_flavor | varchar(50)   | dish flavor   |             |
+| number      | int           | amount        |             |
+| amount      | decimal(10,2) | unit price    |             |
 
