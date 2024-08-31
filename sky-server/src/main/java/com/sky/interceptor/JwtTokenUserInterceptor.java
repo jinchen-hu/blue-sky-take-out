@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 @Slf4j
-public class JwtTokenAdminInterceptor implements HandlerInterceptor {
+public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
     @Autowired
     private JwtProperties jwtProperties;
@@ -47,11 +47,11 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         try {
             log.info("Examined jwt:{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
-            Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
-            log.info("Current employee id：{}", empId);
+            Long userid = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
+            log.info("Current employee id：{}", userid);
 
             // Store current user id to ThreadLocal
-            BaseContext.setCurrentId(empId);
+            BaseContext.setCurrentId(userid);
             //3、pass
             return true;
         } catch (Exception ex) {

@@ -28,3 +28,7 @@ Content-Type: application/json
   "page": 2,
   "pageSize": 1
 }
+
+###
+GET {{server-port}}/user/shop/status
+Content-Type: application/json
