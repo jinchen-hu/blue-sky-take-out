@@ -9,11 +9,8 @@ import java.util.List;
 
 @Mapper
 public interface SetmealDishMapper {
-    /**
-     * @param dishIds
-     * @return
-     */
     List<Long> getSetmealIdsByDishIds(List<Long> dishIds);
+
     void insertBatch(List<SetmealDish> setmealDishes);
 
     @Delete("delete from setmeal_dish where setmeal_id = #{setmealId}")
