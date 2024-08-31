@@ -56,7 +56,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCart.setImage(dish.getImage());
                 shoppingCart.setAmount(dish.getPrice());
             } else {
-                // What added in the cart is combi
+                // What added in the cart is combo instead
                 Setmeal setmeal = setmealMapper.getById(shoppingCartDTO.getSetmealId());
                 shoppingCart.setAmount(setmeal.getPrice());
                 shoppingCart.setName(setmeal.getName());
@@ -77,5 +77,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 builder().
                 userId(BaseContext.getCurrentId()).
                 build());
+    }
+
+    public void cleanShoppingCart() {
+        shoppingCartMapper.deleteByUserId(BaseContext.getCurrentId());
     }
 }
