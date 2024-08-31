@@ -48,7 +48,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-
+        <!-- Redis connector -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>6.3.2.RELEASE</version>
+        </dependency>
         <!-- MySql -->
         <dependency>
             <groupId>com.mysql</groupId>
