@@ -2,212 +2,212 @@
 
 ## List of Tables
 
-|  |   Table name      | Comments       |
-| ---- | ------------- | -------------- |
-| 1    | employee      |     employee info     |
-| 2    | category      |      dish category    |
-| 3    | dish          | dish info         |
-| 4    | dish_flavor   | dish flavors     |
-| 5    | setmeal       | meal combo         |
-| 6    | setmeal_dish  | relationship between dish and combo |
-| 7    | user          | user info         |
-| 8    | address_book  | user address book         |
-| 9    | shopping_cart | cart info       |
-| 10   | orders        | order info         |
-| 11   | order_detail  | order details     |
+|    | Table name    | Comments                            |
+|----|---------------|-------------------------------------|
+| 1  | employee      | employee info                       |
+| 2  | category      | dish category                       |
+| 3  | dish          | dish info                           |
+| 4  | dish_flavor   | dish flavors                        |
+| 5  | setmeal       | meal combo                          |
+| 6  | setmeal_dish  | relationship between dish and combo |
+| 7  | user          | user info                           |
+| 8  | address_book  | user address book                   |
+| 9  | shopping_cart | cart info                           |
+| 10 | orders        | order info                          |
+| 11 | order_detail  | order details                       |
 
 ### 1. employee
 
 `emloyee` stores the employee information
 
-| Colum      | Data Type    | Description         | Comments        |
-| ----------- | ----------- | ------------ | ----------- |
-| id          | bigint      | Primary key         | increment        |
-| name        | varchar(32) | employee name         |             |
-| username    | varchar(32) | employee username       | Unique        |
-| password    | varchar(64) | password         |             |
-| phone       | varchar(11) | phone number       |             |
-| sex         | varchar(2)  | gender         |             |
-| id_number   | varchar(18) | ID    |             |
-| status      | int         | account staus     | 1-active 0-freezing |
-| create_time | datetime    | create time     |             |
-| update_time | datetime    | update time |             |
-| create_user | bigint      | create user id     |             |
-| update_user | bigint      | update user id |             |
+| Colum       | Data Type   | Description       | Comments             |
+|-------------|-------------|-------------------|----------------------|
+| id          | bigint      | Primary key       | increment            |
+| name        | varchar(32) | employee name     |                      |
+| username    | varchar(32) | employee username | Unique               |
+| password    | varchar(64) | password          |                      |
+| phone       | varchar(11) | phone number      |                      |
+| sex         | varchar(2)  | gender            |                      |
+| id_number   | varchar(18) | ID                |                      |
+| status      | int         | account status    | 1-active 0-suspended |
+| create_time | datetime    | create time       |                      |
+| update_time | datetime    | update time       |                      |
+| create_user | bigint      | create user id    |                      |
+| update_user | bigint      | update user id    |                      |
 
 ### 2. category
 
-category表为分类表，用于存储商品的分类信息。具体表结构如下：
+`category` stores the categories for meals and combos：
 
-| 字段名      | 数据类型    | 说明         | 备注                 |
-| ----------- | ----------- | ------------ | -------------------- |
-| id          | bigint      | 主键         | 自增                 |
-| name        | varchar(32) | 分类名称     | 唯一                 |
-| type        | int         | 分类类型     | 1菜品分类  2套餐分类 |
-| sort        | int         | 排序字段     | 用于分类数据的排序   |
-| status      | int         | 状态         | 1启用 0禁用          |
-| create_time | datetime    | 创建时间     |                      |
-| update_time | datetime    | 最后修改时间 |                      |
-| create_user | bigint      | 创建人id     |                      |
-| update_user | bigint      | 最后修改人id |                      |
+| Column      | Data Type   | Description      | Comments          |
+|-------------|-------------|------------------|-------------------|
+| id          | bigint      | Primary key      | increment         |
+| name        | varchar(32) | category name    | unique            |
+| type        | int         | type             | 1-meal  2-combo   |
+| sort        | int         | sort             | sorting           |
+| status      | int         | status           | 1-active 0-banned |
+| create_time | datetime    | create time      |                   |
+| update_time | datetime    | last update time |                   |
+| create_user | bigint      | creator id       |                   |
+| update_user | bigint      | last updater id  |                   |
 
 ### 3. dish
 
-dish表为菜品表，用于存储菜品的信息。具体表结构如下：
+`dish` stores meal information：
 
-| 字段名      | 数据类型      | 说明         | 备注        |
-| ----------- | ------------- | ------------ | ----------- |
-| id          | bigint        | 主键         | 自增        |
-| name        | varchar(32)   | 菜品名称     | 唯一        |
-| category_id | bigint        | 分类id       | 逻辑外键    |
-| price       | decimal(10,2) | 菜品价格     |             |
-| image       | varchar(255)  | 图片路径     |             |
-| description | varchar(255)  | 菜品描述     |             |
-| status      | int           | 售卖状态     | 1起售 0停售 |
-| create_time | datetime      | 创建时间     |             |
-| update_time | datetime      | 最后修改时间 |             |
-| create_user | bigint        | 创建人id     |             |
-| update_user | bigint        | 最后修改人id |             |
+| Column      | Data Type     | Description      | Comments                 |
+|-------------|---------------|------------------|--------------------------|
+| id          | bigint        | Primary key      | increment                |
+| name        | varchar(32)   | meal name        | Unique                   |
+| category_id | bigint        | category id      | foreign key              |
+| price       | decimal(10,2) | price            |                          |
+| image       | varchar(255)  | pic path         |                          |
+| description | varchar(255)  | description      |                          |
+| status      | int           | status           | 1-on-sale 0-out-of-stack |
+| create_time | datetime      | create time      |                          |
+| update_time | datetime      | last update time |                          |
+| create_user | bigint        | creator id       |                          |
+| update_user | bigint        | last updater id  |                          |
 
 ### 4. dish_flavor
 
-dish_flavor表为菜品口味表，用于存储菜品的口味信息。具体表结构如下：
+`dish_flavor` stores the flavor of dishes：
 
-| 字段名  | 数据类型     | 说明     | 备注     |
-| ------- | ------------ | -------- | -------- |
-| id      | bigint       | 主键     | 自增     |
-| dish_id | bigint       | 菜品id   | 逻辑外键 |
-| name    | varchar(32)  | 口味名称 |          |
-| value   | varchar(255) | 口味值   |          |
+| Column  | Data Type    | Description | Comments    |
+|---------|--------------|-------------|-------------|
+| id      | bigint       | Primary key | increment   |
+| dish_id | bigint       | dish id     | foreign key |
+| name    | varchar(32)  | name        |             |
+| value   | varchar(255) | value       |             |
 
 ### 5. setmeal
 
-setmeal表为套餐表，用于存储套餐的信息。具体表结构如下：
+`setmeal` stores combo information：
 
-| 字段名      | 数据类型      | 说明         | 备注        |
-| ----------- | ------------- | ------------ | ----------- |
-| id          | bigint        | 主键         | 自增        |
-| name        | varchar(32)   | 套餐名称     | 唯一        |
-| category_id | bigint        | 分类id       | 逻辑外键    |
-| price       | decimal(10,2) | 套餐价格     |             |
-| image       | varchar(255)  | 图片路径     |             |
-| description | varchar(255)  | 套餐描述     |             |
-| status      | int           | 售卖状态     | 1起售 0停售 |
-| create_time | datetime      | 创建时间     |             |
-| update_time | datetime      | 最后修改时间 |             |
-| create_user | bigint        | 创建人id     |             |
-| update_user | bigint        | 最后修改人id |             |
+| Column      | Data Type     | Description      | Comments                 |
+|-------------|---------------|------------------|--------------------------|
+| id          | bigint        | primary key      | increment                |
+| name        | varchar(32)   | combo name       | unique                   |
+| category_id | bigint        | category id      | foreign key              |
+| price       | decimal(10,2) | price            |                          |
+| image       | varchar(255)  | pic path         |                          |
+| description | varchar(255)  | description      |                          |
+| status      | int           | status           | 1-on-sale 0-out-of-stock |
+| create_time | datetime      | create time      |                          |
+| update_time | datetime      | last update time |                          |
+| create_user | bigint        | creator id       |                          |
+| update_user | bigint        | last updater id  |                          |
 
 ### 6. setmeal_dish
 
-setmeal_dish表为套餐菜品关系表，用于存储套餐和菜品的关联关系。具体表结构如下：
+`setmeal_dish` stores relationship between meals and combos
 
-| 字段名     | 数据类型      | 说明     | 备注     |
-| ---------- | ------------- | -------- | -------- |
-| id         | bigint        | 主键     | 自增     |
-| setmeal_id | bigint        | 套餐id   | 逻辑外键 |
-| dish_id    | bigint        | 菜品id   | 逻辑外键 |
-| name       | varchar(32)   | 菜品名称 | 冗余字段 |
-| price      | decimal(10,2) | 菜品单价 | 冗余字段 |
-| copies     | int           | 菜品份数 |          |
+| Column     | Data Type     | Description | Comment     |
+|------------|---------------|-------------|-------------|
+| id         | bigint        | primary key | increment   |
+| setmeal_id | bigint        | combo id    | foreign key |
+| dish_id    | bigint        | dish id     | foreign key |
+| name       | varchar(32)   | dish name   |             |
+| price      | decimal(10,2) | dish price  |             |
+| copies     | int           | dish stock  |             |
 
 ### 7. user
 
-user表为用户表，用于存储C端用户的信息。具体表结构如下：
+`user` stores client user information
 
-| 字段名      | 数据类型     | 说明               | 备注 |
-| ----------- | ------------ | ------------------ | ---- |
-| id          | bigint       | 主键               | 自增 |
-| openid      | varchar(45)  | 微信用户的唯一标识 |      |
-| name        | varchar(32)  | 用户姓名           |      |
-| phone       | varchar(11)  | 手机号             |      |
-| sex         | varchar(2)   | 性别               |      |
-| id_number   | varchar(18)  | 身份证号           |      |
-| avatar      | varchar(500) | 微信用户头像路径   |      |
-| create_time | datetime     | 注册时间           |      |
+| Column      | Data Tyte    | Description              | Comments  |
+|-------------|--------------|--------------------------|-----------|
+| id          | bigint       | Primary key              | increment |
+| openid      | varchar(45)  | wechat unique identifier |           |
+| name        | varchar(32)  | name                     |           |
+| phone       | varchar(11)  | phone number             |           |
+| sex         | varchar(2)   | gender                   |           |
+| id_number   | varchar(18)  | id number                |           |
+| avatar      | varchar(500) | profile pic path         |           |
+| create_time | datetime     | signup time              |           |
 
 ### 8. address_book
 
-address_book表为地址表，用于存储C端用户的收货地址信息。具体表结构如下：
+`address_book` stores address book for client users
 
-| 字段名        | 数据类型     | 说明         | 备注           |
-| ------------- | ------------ | ------------ | -------------- |
-| id            | bigint       | 主键         | 自增           |
-| user_id       | bigint       | 用户id       | 逻辑外键       |
-| consignee     | varchar(50)  | 收货人       |                |
-| sex           | varchar(2)   | 性别         |                |
-| phone         | varchar(11)  | 手机号       |                |
-| province_code | varchar(12)  | 省份编码     |                |
-| province_name | varchar(32)  | 省份名称     |                |
-| city_code     | varchar(12)  | 城市编码     |                |
-| city_name     | varchar(32)  | 城市名称     |                |
-| district_code | varchar(12)  | 区县编码     |                |
-| district_name | varchar(32)  | 区县名称     |                |
-| detail        | varchar(200) | 详细地址信息 | 具体到门牌号   |
-| label         | varchar(100) | 标签         | 公司、家、学校 |
-| is_default    | tinyint(1)   | 是否默认地址 | 1是 0否        |
+| Column        | Data Tyte    | Description         | Comments     |
+|---------------|--------------|---------------------|--------------|
+| id            | bigint       | Primary key         | increment    |
+| user_id       | bigint       | user id             | foreign key  |
+| consignee     | varchar(50)  | consignee           |              |
+| sex           | varchar(2)   | gender              |              |
+| phone         | varchar(11)  | phone number        |              |
+| province_code | varchar(12)  | province code       |              |
+| province_name | varchar(32)  | province name       |              |
+| city_code     | varchar(12)  | zip code            |              |
+| city_name     | varchar(32)  | city name           |              |
+| district_code | varchar(12)  | direct code         |              |
+| district_name | varchar(32)  | direct name         |              |
+| detail        | varchar(200) | detailed address    |              |
+| label         | varchar(100) | label               | office, home |
+| is_default    | tinyint(1)   | if default addresss | 1-yes 0-no   |
 
 ### 9. shopping_cart
 
-shopping_cart表为购物车表，用于存储C端用户的购物车信息。具体表结构如下：
+`shopping_cart` stores client shopping cart information
 
-| 字段名      | 数据类型      | 说明         | 备注     |
-| ----------- | ------------- | ------------ | -------- |
-| id          | bigint        | 主键         | 自增     |
-| name        | varchar(32)   | 商品名称     |          |
-| image       | varchar(255)  | 商品图片路径 |          |
-| user_id     | bigint        | 用户id       | 逻辑外键 |
-| dish_id     | bigint        | 菜品id       | 逻辑外键 |
-| setmeal_id  | bigint        | 套餐id       | 逻辑外键 |
-| dish_flavor | varchar(50)   | 菜品口味     |          |
-| number      | int           | 商品数量     |          |
-| amount      | decimal(10,2) | 商品单价     |          |
-| create_time | datetime      | 创建时间     |          |
+| Column      | Data Tyte     | Description   | Comments    |
+|-------------|---------------|---------------|-------------|
+| id          | bigint        | Primary key   | increment   |
+| name        | varchar(32)   | dish name     |             |
+| image       | varchar(255)  | dish pic path |             |
+| user_id     | bigint        | user id       | foreign key |
+| dish_id     | bigint        | dish id       | foreign key |
+| setmeal_id  | bigint        | combo id      | foreign key |
+| dish_flavor | varchar(50)   | flavor        |             |
+| number      | int           | quantity      |             |
+| amount      | decimal(10,2) | total price   |             |
+| create_time | datetime      | create time   |             |
 
 ### 10. orders
 
-orders表为订单表，用于存储C端用户的订单数据。具体表结构如下：
+`orders` stores order information
 
-| 字段名                  | 数据类型      | 说明         | 备注                                            |
-| ----------------------- | ------------- | ------------ | ----------------------------------------------- |
-| id                      | bigint        | 主键         | 自增                                            |
-| number                  | varchar(50)   | 订单号       |                                                 |
-| status                  | int           | 订单状态     | 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消 |
-| user_id                 | bigint        | 用户id       | 逻辑外键                                        |
-| address_book_id         | bigint        | 地址id       | 逻辑外键                                        |
-| order_time              | datetime      | 下单时间     |                                                 |
-| checkout_time           | datetime      | 付款时间     |                                                 |
-| pay_method              | int           | 支付方式     | 1微信支付 2支付宝支付                           |
-| pay_status              | tinyint       | 支付状态     | 0未支付 1已支付 2退款                           |
-| amount                  | decimal(10,2) | 订单金额     |                                                 |
-| remark                  | varchar(100)  | 备注信息     |                                                 |
-| phone                   | varchar(11)   | 手机号       |                                                 |
-| address                 | varchar(255)  | 详细地址信息 |                                                 |
-| user_name               | varchar(32)   | 用户姓名     |                                                 |
-| consignee               | varchar(32)   | 收货人       |                                                 |
-| cancel_reason           | varchar(255)  | 订单取消原因 |                                                 |
-| rejection_reason        | varchar(255)  | 拒单原因     |                                                 |
-| cancel_time             | datetime      | 订单取消时间 |                                                 |
-| estimated_delivery_time | datetime      | 预计送达时间 |                                                 |
-| delivery_status         | tinyint       | 配送状态     | 1立即送出  0选择具体时间                        |
-| delivery_time           | datetime      | 送达时间     |                                                 |
-| pack_amount             | int           | 打包费       |                                                 |
-| tableware_number        | int           | 餐具数量     |                                                 |
-| tableware_status        | tinyint       | 餐具数量状态 | 1按餐量提供  0选择具体数量                      |
+| Column                  | Data Tyte     | Description               | Comments                                                                               |
+|-------------------------|---------------|---------------------------|----------------------------------------------------------------------------------------|
+| id                      | bigint        | Primary key               | increment                                                                              |
+| number                  | varchar(50)   | order number              |                                                                                        |
+| status                  | int           | order status              | 1-pending pay 2-pending accepted 3-accepted <br/>4-deliverying 5-completed 6-cancelled |
+| user_id                 | bigint        | user id                   | foreign key                                                                            |
+| address_book_id         | bigint        | address id                | foreign key                                                                            |
+| order_time              | datetime      | order time                |                                                                                        |
+| checkout_time           | datetime      | payment time              |                                                                                        |
+| pay_method              | int           | pay method                | 1-wechat pay 2-alipay                                                                  |
+| pay_status              | tinyint       | pay status                | 0-pending pay 1-paid 2-refund                                                          |
+| amount                  | decimal(10,2) | order amount              |                                                                                        |
+| remark                  | varchar(100)  | comments                  |                                                                                        |
+| phone                   | varchar(11)   | phone number              |                                                                                        |
+| address                 | varchar(255)  | detailed address          |                                                                                        |
+| user_name               | varchar(32)   | user name                 |                                                                                        |
+| consignee               | varchar(32)   | consignee                 |                                                                                        |
+| cancel_reason           | varchar(255)  | cancellation reason       |                                                                                        |
+| rejection_reason        | varchar(255)  | rejection reason          |                                                                                        |
+| cancel_time             | datetime      | cancel time               |                                                                                        |
+| estimated_delivery_time | datetime      | anticipated delivery time |                                                                                        |
+| delivery_status         | tinyint       | delivery status           | 1-instant  0-chosen time                                                               |
+| delivery_time           | datetime      | delivered time            |                                                                                        |
+| pack_amount             | int           | packaging amount          |                                                                                        |
+| tableware_number        | int           | tableware amount          |                                                                                        |
+| tableware_status        | tinyint       | tableware status          | 1-based on dish amount  0-chosen by user                                               |
 
 ### 11. order_detail
 
-order_detail表为订单明细表，用于存储C端用户的订单明细数据。具体表结构如下：
+`order_detail` stores detailed order information
 
-| 字段名      | 数据类型      | 说明         | 备注     |
-| ----------- | ------------- | ------------ | -------- |
-| id          | bigint        | 主键         | 自增     |
-| name        | varchar(32)   | 商品名称     |          |
-| image       | varchar(255)  | 商品图片路径 |          |
-| order_id    | bigint        | 订单id       | 逻辑外键 |
-| dish_id     | bigint        | 菜品id       | 逻辑外键 |
-| setmeal_id  | bigint        | 套餐id       | 逻辑外键 |
-| dish_flavor | varchar(50)   | 菜品口味     |          |
-| number      | int           | 商品数量     |          |
-| amount      | decimal(10,2) | 商品单价     |          |
+| Column      | Data Tyte     | Description   | Comments    |
+|-------------|---------------|---------------|-------------|
+| id          | bigint        | Primary key   | increment   |
+| name        | varchar(32)   | meal name     |             |
+| image       | varchar(255)  | meal pic path |             |
+| order_id    | bigint        | order id      | foreign key |
+| dish_id     | bigint        | dish id       | foreign key |
+| setmeal_id  | bigint        | set id        | foreign key |
+| dish_flavor | varchar(50)   | dish flavor   |             |
+| number      | int           | amount        |             |
+| amount      | decimal(10,2) | unit price    |             |
 

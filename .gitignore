@@ -8,3 +8,5 @@ gen
 .vscode
 /logs
 /**/target
+*.log
+sky-server/src/main/resources/application-dev.yml

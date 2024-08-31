@@ -1,7 +1,7 @@
 [
   {
     "index": 0,
-    "name": "分类相关接口",
+    "name": "category interfaces",
     "desc": "Category Controller",
     "add_time": 1656056920,
     "up_time": 1656056920,
@@ -19,11 +19,11 @@
         "api_opened": false,
         "index": 0,
         "tag": [
-          "分类相关接口"
+          "category interfaces"
         ],
         "_id": 323246,
         "method": "PUT",
-        "title": "修改分类",
+        "title": "update category",
         "path": "/admin/category",
         "req_params": [],
         "req_body_form": [],
@@ -62,11 +62,11 @@
         "api_opened": false,
         "index": 0,
         "tag": [
-          "分类相关接口"
+          "category interfaces"
         ],
         "_id": 323252,
         "method": "GET",
-        "title": "分类分页查询",
+        "title": "category pagination query",
         "path": "/admin/category/page",
         "req_params": [],
         "req_body_form": [],
@@ -76,29 +76,29 @@
             "required": "0",
             "_id": "62b5734b3e12637221f1ff20",
             "name": "name",
-            "example": "传统主食",
-            "desc": "分类名称"
+            "example": "traditional foods",
+            "desc": "description"
           },
           {
             "required": "1",
             "_id": "62b5734b3e1263549af1ff1f",
             "name": "page",
             "example": "1",
-            "desc": "页码"
+            "desc": "page number"
           },
           {
             "required": "1",
             "_id": "62b5734b3e1263289cf1ff1e",
             "name": "pageSize",
             "example": "10",
-            "desc": "每页记录数"
+            "desc": "page size"
           },
           {
             "required": "0",
             "_id": "62b5734b3e12630237f1ff1d",
             "name": "type",
             "example": "1",
-            "desc": "分类类型：1为菜品分类，2为套餐分类"
+            "desc": "category type: 1-dish, 2-combo"
           }
         ],
         "req_body_type": "raw",

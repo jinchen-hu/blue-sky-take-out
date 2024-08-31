@@ -18,3 +18,21 @@ Content-Type: application/json
   "sex": "1",
   "username": "小智"
 }
+
+###
+GET {{server-port}}/admin/employee/page
+Content-Type: application/json
+
+{
+  "name": "",
+  "page": 2,
+  "pageSize": 1
+}
+
+###
+GET {{server-port}}/user/shop/status
+Content-Type: application/json
+
+###
+GET {{server-port}}/user/category/list
+Content-Type: application/json
