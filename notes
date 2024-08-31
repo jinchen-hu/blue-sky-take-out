@@ -3,3 +3,5 @@ TODO:
 2. utilize Mybatis-plus
 3. persist data into cloud provider
 4. use spring gateway
+5. nacos discovery and register centre
+6. documentation
