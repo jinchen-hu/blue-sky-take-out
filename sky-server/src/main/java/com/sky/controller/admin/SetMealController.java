@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.constant.CacheNamesConstant;
 import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,7 @@ public class SetMealController {
 
     @PostMapping
     @Operation
+    @CacheEvict(cacheNames = CacheNamesConstant.SET_MEAL_CACHE, key = "#setmealDTO.categoryId")
     public Result<?> save(@RequestBody SetmealDTO setmealDTO) {
         setMealService.saveWithDish(setmealDTO);
         return Result.success();
@@ -41,6 +44,7 @@ public class SetMealController {
 
     @DeleteMapping
     @Operation
+    @CacheEvict(cacheNames = CacheNamesConstant.SET_MEAL_CACHE, allEntries = true)
     public Result<?> delete(@RequestParam List<Long> ids) {
         setMealService.deleteBatch(ids);
         return Result.success();
@@ -54,13 +58,13 @@ public class SetMealController {
     }
 
     /**
-     * 修改套餐
      *
      * @param setmealDTO
      * @return
      */
     @PutMapping
     @Operation(description = "update combo")
+    @CacheEvict(cacheNames = CacheNamesConstant.SET_MEAL_CACHE, allEntries = true)
     public Result<?> update(@RequestBody SetmealDTO setmealDTO) {
         setMealService.update(setmealDTO);
         return Result.success();
@@ -68,6 +72,7 @@ public class SetMealController {
 
     @PostMapping("/status/{status}")
     @Operation(description = "toggle combo status")
+    @CacheEvict(cacheNames = CacheNamesConstant.SET_MEAL_CACHE, allEntries = true)
     public Result<?> startOrStop(@PathVariable Integer status, Long id) {
         setMealService.startOrStop(status, id);
         return Result.success();
