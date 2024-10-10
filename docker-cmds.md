@@ -26,7 +26,7 @@ docker run -d \
 
 ```text
 docker  run \
---name nacos -d \
+--name sky-nacos -d \
 -p 8848:8848 \
 -p 9848:9848 \
 -p 9849:9849 \
